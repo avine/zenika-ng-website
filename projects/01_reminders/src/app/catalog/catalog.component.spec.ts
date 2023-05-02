@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { ApiService } from '../shared/services/api.service';
+import { ApiServiceMock } from '../shared/services/api.service.mock';
 import { CatalogComponent } from './catalog.component';
 
 describe('CatalogComponent', () => {
@@ -12,7 +14,16 @@ describe('CatalogComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CatalogComponent],
       imports: [RouterTestingModule],
-      providers: [{ provide: 'WELCOME_MSG', useValue: 'Welcome on unit test' }],
+      providers: [
+        {
+          provide: ApiService,
+          useValue: ApiServiceMock,
+        },
+        {
+          provide: 'WELCOME_MSG',
+          useValue: 'Welcome on unit test',
+        },
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 

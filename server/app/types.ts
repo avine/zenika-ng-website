@@ -6,3 +6,9 @@ export interface Product {
   price: number;
   stock: number;
 }
+
+export interface BasketItem {
+  id: string;
+  title: string;
+  price: number;
+}

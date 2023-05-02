@@ -1,7 +1,8 @@
-import { Product } from './product/product.types';
+import { Product } from './types';
 
-const products: Product[] = [
+export const getProducts = (): Product[] => [
   {
+    id: 'welsch',
     title: 'Coding the welsch',
     description: 'Tee-shirt col rond - Homme',
     photo:
@@ -10,6 +11,7 @@ const products: Product[] = [
     stock: 2,
   },
   {
+    id: 'world',
     title: 'Coding the world',
     description: 'Tee-shirt col rond - Homme',
     photo:
@@ -18,6 +20,7 @@ const products: Product[] = [
     stock: 2,
   },
   {
+    id: 'vador',
     title: 'Duck Vador',
     description: 'Tee-shirt col rond - Femme',
     photo:
@@ -26,6 +29,7 @@ const products: Product[] = [
     stock: 2,
   },
   {
+    id: 'snow',
     title: 'Coding the snow',
     description: 'Tee-shirt col rond - Femme',
     photo:
@@ -34,11 +38,3 @@ const products: Product[] = [
     stock: 2,
   },
 ];
-
-export function getProductsFromNetwork(): Promise<Product[]> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(products);
-    }, 100);
-  });
-}

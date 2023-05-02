@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,7 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ProductComponent } from './product/product.component';
 
 @NgModule({
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: 'WELCOME_MSG',

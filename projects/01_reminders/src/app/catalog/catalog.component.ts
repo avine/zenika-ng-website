@@ -1,10 +1,8 @@
 import { Component, Inject } from '@angular/core';
 
-import { getProductsFromNetwork } from '../fake-server';
+import { BasketItem } from '../basket/basket.types';
 import { Product } from '../product/product.types';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const globalBasket: Product[] = ((window as any).basket ??= []);
+import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-catalog',
@@ -13,19 +11,22 @@ const globalBasket: Product[] = ((window as any).basket ??= []);
 export class CatalogComponent {
   protected products?: Product[];
 
-  constructor(@Inject('WELCOME_MSG') protected welcomeMsg: string) {
-    getProductsFromNetwork().then((products) => {
-      this.products = products;
-    });
+  protected basket?: BasketItem[];
+
+  constructor(@Inject('WELCOME_MSG') protected welcomeMsg: string, private apiService: ApiService) {
+    this.apiService.getProducts().subscribe((products) => (this.products = products));
+    this.apiService.getBasket().subscribe((basket) => (this.basket = basket));
   }
 
   protected get basketTotal(): number {
-    return globalBasket.reduce((total: number, { price }: Product) => total + price, 0);
+    return this.basket?.reduce((total: number, { price }) => total + price, 0) ?? 0;
   }
 
   protected addToBasket(product: Product): void {
-    globalBasket.push(product);
-    product.stock -= 1;
+    this.apiService.addToBasket(product.id).subscribe(() => {
+      this.basket?.push(product);
+      product.stock -= 1;
+    });
   }
 
   protected get isStockEmpty(): boolean {

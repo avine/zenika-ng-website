@@ -11,8 +11,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "start:01": "ng serve --project 01_reminders",
-    "test:01": "ng test --project 01_reminders",
-    "docs": "ng build --base-href /zenika-ng-website/ --output-path docs && cp ./docs/index.html ./docs/404.html"
+    "test:01": "ng test --project 01_reminders"
   },
   "private": true,
   "dependencies": {

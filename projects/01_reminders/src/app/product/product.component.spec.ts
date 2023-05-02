@@ -13,7 +13,7 @@ describe('ProductComponent', () => {
 
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
-    component.product = { title: 'title', description: 'description', photo: 'photo', price: 42, stock: 2 };
+    component.product = { id: 'id', title: 'title', description: 'description', photo: 'photo', price: 10, stock: 2 };
 
     fixture.detectChanges();
   });
