@@ -9,7 +9,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "start:01": "ng serve --project 01_reminders",
+    "test:01": "ng test --project 01_reminders",
+    "docs": "ng build --base-href /zenika-ng-website/ --output-path docs && cp ./docs/index.html ./docs/404.html"
   },
   "private": true,
   "dependencies": {
@@ -21,11 +24,13 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "bootstrap": "^5.2.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^15.2.7",
     "@angular-eslint/builder": "15.2.1",
     "@angular-eslint/eslint-plugin": "15.2.1",
     "@angular-eslint/eslint-plugin-template": "15.2.1",
