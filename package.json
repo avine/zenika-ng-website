@@ -12,8 +12,10 @@
     "format:check": "prettier --check .",
     "start:01": "ng serve --project 01_reminders",
     "start:02": "ng serve --project 02_bestpractices",
+    "start:03": "ng serve --project 03_rxjs",
     "test:01": "ng test --project 01_reminders",
-    "test:02": "ng test --project 02_bestpractices"
+    "test:02": "ng test --project 02_bestpractices",
+    "test:03": "ng test --project 03_rxjs"
   },
   "private": true,
   "dependencies": {
