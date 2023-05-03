@@ -1,27 +1,32 @@
-import { zip } from 'rxjs';
+import { map, zip } from 'rxjs';
 
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 
-import { BasketComponent } from './basket/basket.component';
 import { BasketService } from './basket/basket.service';
-import { CatalogComponent } from './catalog/catalog.component';
 import { CatalogService } from './catalog/catalog.service';
 
 export const appRoutes: Routes = [
   {
     path: '',
-    component: CatalogComponent,
+    loadComponent: () => import('./catalog/catalog.component').then((m) => m.CatalogComponent),
     resolve: {
       _: () => zip([inject(CatalogService).fetch(), inject(BasketService).fetch()]),
     },
   },
   {
     path: 'basket',
-    component: BasketComponent,
-    resolve: {
-      _: () => inject(BasketService).fetch(),
-    },
+    loadComponent: () => import('./basket/basket.component').then((m) => m.BasketComponent),
+    canMatch: [
+      () =>
+        inject(BasketService)
+          .fetch()
+          .pipe(map(({ length }) => length > 0)),
+    ],
+  },
+  {
+    path: 'basket',
+    loadComponent: () => import('./basket-empty/basket-empty.component').then((m) => m.BasketEmptyComponent),
   },
   {
     path: '**',
