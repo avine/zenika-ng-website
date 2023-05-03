@@ -1,14 +1,14 @@
 import { zip } from 'rxjs';
 
-import { inject, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Routes } from '@angular/router';
 
 import { BasketComponent } from './basket/basket.component';
 import { BasketService } from './basket/basket.service';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CatalogService } from './catalog/catalog.service';
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     component: CatalogComponent,
@@ -28,9 +28,3 @@ const routes: Routes = [
     redirectTo: '/',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

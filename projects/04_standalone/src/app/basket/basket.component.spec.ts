@@ -11,8 +11,7 @@ describe('BasketComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BasketComponent],
-      imports: [RouterTestingModule],
+      imports: [BasketComponent, RouterTestingModule],
       providers: [
         {
           provide: BasketService,

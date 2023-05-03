@@ -11,8 +11,7 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MenuComponent],
-      imports: [RouterTestingModule],
+      imports: [MenuComponent, RouterTestingModule],
       providers: [
         {
           provide: ApiService,

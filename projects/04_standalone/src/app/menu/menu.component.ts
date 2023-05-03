@@ -1,9 +1,13 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { BasketService } from '../basket/basket.service';
 
 @Component({
   selector: 'app-menu',
+  standalone: true,
+  imports: [AsyncPipe, NgIf, RouterLink],
   templateUrl: './menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

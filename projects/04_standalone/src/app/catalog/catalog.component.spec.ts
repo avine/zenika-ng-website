@@ -15,8 +15,7 @@ describe('CatalogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CatalogComponent],
-      imports: [RouterTestingModule],
+      imports: [CatalogComponent, RouterTestingModule],
       providers: [
         {
           provide: CatalogService,

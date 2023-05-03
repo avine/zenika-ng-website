@@ -1,3 +1,4 @@
+import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,6 +7,8 @@ import { BasketService } from './basket.service';
 
 @Component({
   selector: 'app-basket',
+  standalone: true,
+  imports: [AsyncPipe, CurrencyPipe, NgFor, NgIf],
   templateUrl: './basket.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
