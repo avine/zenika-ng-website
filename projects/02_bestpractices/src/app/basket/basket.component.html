@@ -4,12 +4,15 @@
   <div class="card-header">Articles</div>
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-between" *ngFor="let product of basket">
+    <li class="list-group-item d-flex justify-content-between" *ngFor="let product of basketService.basket">
       {{ product.title }} <span class="text-primary">{{ product.price | currency : 'EUR' }}</span>
     </li>
 
-    <li class="list-group-item d-flex justify-content-between fw-bold" *ngIf="basket.length; else basketEmpty">
-      Total <span class="text-primary">{{ basketTotal | currency : 'EUR' }}</span>
+    <li
+      class="list-group-item d-flex justify-content-between fw-bold"
+      *ngIf="basketService.basket.length; else basketEmpty"
+    >
+      Total <span class="text-primary">{{ basketService.total | currency : 'EUR' }}</span>
     </li>
 
     <ng-template #basketEmpty>

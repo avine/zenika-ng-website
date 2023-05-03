@@ -2,9 +2,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ApiService } from '../shared/services/api.service';
-import { ApiServiceMock } from '../shared/services/api.service.mock';
+import { WELCOME_MSG } from '../app.token';
+import { BasketService } from '../basket/basket.service';
+import { BasketServiceMock } from '../basket/basket.service.mock';
 import { CatalogComponent } from './catalog.component';
+import { CatalogService } from './catalog.service';
+import { CatalogServiceMock } from './catalog.service.mock';
 
 describe('CatalogComponent', () => {
   let component: CatalogComponent;
@@ -16,11 +19,15 @@ describe('CatalogComponent', () => {
       imports: [RouterTestingModule],
       providers: [
         {
-          provide: ApiService,
-          useValue: ApiServiceMock,
+          provide: CatalogService,
+          useValue: CatalogServiceMock,
         },
         {
-          provide: 'WELCOME_MSG',
+          provide: BasketService,
+          useValue: BasketServiceMock,
+        },
+        {
+          provide: WELCOME_MSG,
           useValue: 'Welcome on unit test',
         },
       ],

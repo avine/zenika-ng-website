@@ -18,5 +18,5 @@ export const ApiServiceMock = {
     .createSpy('addToBasket')
     .and.returnValue(of({ id: 'id', title: 'title', price: 10 } as BasketItem)),
 
-  checkoutBasket: jasmine.createSpy('checkoutBasket').and.returnValue(of(of({ orderNumber: 1 }))),
+  checkoutBasket: jasmine.createSpy('checkoutBasket').and.returnValue(of({ orderNumber: 1 })),
 };

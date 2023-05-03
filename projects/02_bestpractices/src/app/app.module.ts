@@ -4,16 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WELCOME_MSG } from './app.token';
 import { BasketComponent } from './basket/basket.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { ProductComponent } from './catalog/product/product.component';
 import { MenuComponent } from './menu/menu.component';
-import { ProductComponent } from './product/product.component';
 
 @NgModule({
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
-      provide: 'WELCOME_MSG',
+      provide: WELCOME_MSG,
       useValue: 'Bienvenue sur Zenika Ecommerce',
     },
   ],

@@ -12,11 +12,13 @@ describe('BasketComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BasketComponent],
-      imports: [ RouterTestingModule],
-      providers: [{
-        provide: ApiService,
-        useValue: ApiServiceMock,
-      }],
+      imports: [RouterTestingModule],
+      providers: [
+        {
+          provide: ApiService,
+          useValue: ApiServiceMock,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BasketComponent);

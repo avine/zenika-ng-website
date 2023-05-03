@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 
 import { BasketItem } from '../../basket/basket.types';
-import { Product } from '../../product/product.types';
+import { Product } from '../../catalog/product/product.types';
 
 export const ApiServiceMock = {
   getProducts: jasmine.createSpy('getProducts').and.returnValue(of([] as Product[])),
@@ -18,5 +18,5 @@ export const ApiServiceMock = {
     .createSpy('addToBasket')
     .and.returnValue(of({ id: 'id', title: 'title', price: 10 } as BasketItem)),
 
-  checkoutBasket: jasmine.createSpy('checkoutBasket').and.returnValue(of(of({ orderNumber: 1 }))),
+  checkoutBasket: jasmine.createSpy('checkoutBasket').and.returnValue(of({ orderNumber: 1 })),
 };

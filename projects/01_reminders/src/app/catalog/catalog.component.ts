@@ -25,15 +25,19 @@ export class CatalogComponent {
   protected addToBasket(product: Product): void {
     this.apiService.addToBasket(product.id).subscribe(() => {
       this.basket?.push(product);
-      product.stock -= 1;
+      this.decreaseStock(product);
     });
   }
 
-  protected get isStockEmpty(): boolean {
-    return this.products?.every(({ stock }) => stock === 0) ?? false;
+  private decreaseStock(product: Product): void {
+    product.stock -= 1;
   }
 
   protected isAvailable(product: Product): boolean {
     return product.stock !== 0;
+  }
+
+  protected get isStockEmpty(): boolean {
+    return this.products?.every(({ stock }) => stock === 0) ?? false;
   }
 }

@@ -1,34 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Customer } from '../customer/customer.types';
-import { ApiService } from '../shared/services/api.service';
-import { BasketItem } from './basket.types';
+import { BasketService } from './basket.service';
 
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
 })
-export class BasketComponent {
-  protected basket: BasketItem[] = [];
-
+export class BasketComponent implements OnInit {
   protected customer: Customer = { name: '', address: '', creditCard: '' };
 
-  constructor(private apiService: ApiService, private router: Router) {
-    this.apiService.getBasket().subscribe((basket) => (this.basket = basket));
-  }
+  protected basketService = inject(BasketService);
 
-  protected get basketTotal(): number {
-    return this.basket.reduce((total, { price }) => total + price, 0);
+  private router = inject(Router);
+
+  ngOnInit(): void {
+    this.basketService.fetch().subscribe();
   }
 
   protected checkout(event: Event): void {
     event.stopPropagation();
     event.preventDefault();
 
-    this.apiService.checkoutBasket(this.customer).subscribe(() => {
-      this.basket = [];
-      this.router.navigate(['']);
-    });
+    this.basketService.checkout(this.customer).subscribe(() => this.router.navigate(['']));
   }
 }

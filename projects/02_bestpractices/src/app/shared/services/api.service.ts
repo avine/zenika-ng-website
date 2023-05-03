@@ -4,8 +4,8 @@ import { BasketItem } from 'server/app/types';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Product } from '../../catalog/product/product.types';
 import { Customer } from '../../customer/customer.types';
-import { Product } from '../../product/product.types';
 
 @Injectable({
   providedIn: 'root',
