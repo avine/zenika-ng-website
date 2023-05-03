@@ -1,4 +1,4 @@
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { inject, Injectable } from '@angular/core';
 
@@ -9,25 +9,29 @@ import { Product } from './product/product.types';
   providedIn: 'root',
 })
 export class CatalogService {
-  products: Product[] = [];
+  #products$ = new BehaviorSubject<Product[]>([]);
+
+  products$ = this.#products$.asObservable();
 
   get isStockEmpty(): boolean {
-    return this.products.every(({ stock }) => stock === 0) ?? false;
+    return this.#products$.value.every(({ stock }) => stock === 0);
   }
 
   protected apiService = inject(ApiService);
 
   fetch(): Observable<Product[]> {
-    return this.apiService.getProducts().pipe(tap((products) => (this.products = products)));
+    return this.apiService.getProducts().pipe(tap((products) => this.#products$.next(products)));
   }
 
   decreaseStock(productId: string): void {
-    this.products = this.products.map((product) => {
-      if (product.id === productId) {
-        return { ...product, stock: product.stock - 1 };
-      }
-      return product;
-    });
+    this.#products$.next(
+      this.#products$.value.map((product) => {
+        if (product.id === productId) {
+          return { ...product, stock: product.stock - 1 };
+        }
+        return product;
+      })
+    );
   }
 
   isAvailable(product: Product): boolean {

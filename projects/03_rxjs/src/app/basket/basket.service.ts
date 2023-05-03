@@ -1,4 +1,4 @@
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
 import { inject, Injectable } from '@angular/core';
 
@@ -10,27 +10,29 @@ import { BasketItem } from './basket.types';
   providedIn: 'root',
 })
 export class BasketService {
-  basket: BasketItem[] = [];
+  #basket$ = new BehaviorSubject<BasketItem[]>([]);
 
-  get total(): number {
-    return this.basket.reduce((total, { price }) => total + price, 0);
-  }
+  basket$ = this.#basket$.asObservable();
 
-  get numberOfItems(): number {
-    return this.basket.length;
-  }
+  total$: Observable<number> = this.#basket$.pipe(
+    map((basket) => basket.reduce((total, { price }) => total + price, 0))
+  );
 
-  private apiService = inject(ApiService);
+  numberOfItems$: Observable<number> = this.#basket$.pipe(map(({ length }) => length));
+
+  #apiService = inject(ApiService);
 
   fetch(): Observable<BasketItem[]> {
-    return this.apiService.getBasket().pipe(tap((basket) => (this.basket = basket)));
+    return this.#apiService.getBasket().pipe(tap((basket) => this.#basket$.next(basket)));
   }
 
   addItem(productId: string): Observable<BasketItem> {
-    return this.apiService.addToBasket(productId).pipe(tap((basketItem) => this.basket.push(basketItem)));
+    return this.#apiService
+      .addToBasket(productId)
+      .pipe(tap((basketItem) => this.#basket$.next([...this.#basket$.value, basketItem])));
   }
 
   checkout(customer: Customer): Observable<{ orderNumber: number }> {
-    return this.apiService.checkoutBasket(customer).pipe(tap(() => (this.basket = [])));
+    return this.#apiService.checkoutBasket(customer).pipe(tap(() => this.#basket$.next([])));
   }
 }

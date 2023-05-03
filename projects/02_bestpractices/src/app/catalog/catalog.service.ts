@@ -12,7 +12,7 @@ export class CatalogService {
   products: Product[] = [];
 
   get isStockEmpty(): boolean {
-    return this.products.every(({ stock }) => stock === 0) ?? false;
+    return this.products.every(({ stock }) => stock === 0);
   }
 
   protected apiService = inject(ApiService);

@@ -12,10 +12,10 @@
           Voir mon Panier
 
           <span
-            *ngIf="basketService.numberOfItems"
+            *ngIf="basketService.numberOfItems$ | async as numberOfItems"
             class="position-absolute top-0 start-100 translate-middle badge bg-dark"
           >
-            {{ basketService.numberOfItems }}
+            {{ numberOfItems }}
           </span>
         </a>
       </li>

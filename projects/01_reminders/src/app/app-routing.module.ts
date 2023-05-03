@@ -5,9 +5,18 @@ import { BasketComponent } from './basket/basket.component';
 import { CatalogComponent } from './catalog/catalog.component';
 
 const routes: Routes = [
-  { path: '', component: CatalogComponent },
-  { path: 'basket', component: BasketComponent },
-  { path: '**', redirectTo: '/' },
+  {
+    path: '',
+    component: CatalogComponent,
+  },
+  {
+    path: 'basket',
+    component: BasketComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+  },
 ];
 
 @NgModule({

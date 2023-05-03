@@ -9,9 +9,9 @@ import { ApiService } from '../shared/services/api.service';
   templateUrl: './catalog.component.html',
 })
 export class CatalogComponent {
-  protected products?: Product[];
+  protected products: Product[] = [];
 
-  protected basket?: BasketItem[];
+  protected basket: BasketItem[] = [];
 
   constructor(@Inject('WELCOME_MSG') protected welcomeMsg: string, private apiService: ApiService) {
     this.apiService.getProducts().subscribe((products) => (this.products = products));
@@ -19,12 +19,12 @@ export class CatalogComponent {
   }
 
   protected get basketTotal(): number {
-    return this.basket?.reduce((total: number, { price }) => total + price, 0) ?? 0;
+    return this.basket.reduce((total: number, { price }) => total + price, 0);
   }
 
   protected addToBasket(product: Product): void {
     this.apiService.addToBasket(product.id).subscribe(() => {
-      this.basket?.push(product);
+      this.basket.push(product);
       this.decreaseStock(product);
     });
   }
@@ -38,6 +38,6 @@ export class CatalogComponent {
   }
 
   protected get isStockEmpty(): boolean {
-    return this.products?.every(({ stock }) => stock === 0) ?? false;
+    return this.products.every(({ stock }) => stock === 0);
   }
 }
