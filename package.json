@@ -15,11 +15,13 @@
     "start:03": "ng serve --project 03_rxjs",
     "start:04": "ng serve --project 04_standalone",
     "start:05": "ng serve --project 05_router",
+    "start:06": "ng serve --project 06_reactiveform",
     "test:01": "ng test --project 01_reminders",
     "test:02": "ng test --project 02_bestpractices",
     "test:03": "ng test --project 03_rxjs",
     "test:04": "ng test --project 04_standalone",
-    "test:05": "ng test --project 05_router"
+    "test:05": "ng test --project 05_router",
+    "test:06": "ng test --project 06_reactiveform"
   },
   "private": true,
   "dependencies": {
