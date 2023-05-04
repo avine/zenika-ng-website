@@ -13,10 +13,6 @@ const routes: Routes = [
     path: 'basket',
     component: BasketComponent,
   },
-  {
-    path: '**',
-    redirectTo: '/',
-  },
 ];
 
 @NgModule({

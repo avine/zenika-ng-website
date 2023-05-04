@@ -23,10 +23,6 @@ const routes: Routes = [
       _: () => inject(BasketService).fetch(),
     },
   },
-  {
-    path: '**',
-    redirectTo: '/',
-  },
 ];
 
 @NgModule({

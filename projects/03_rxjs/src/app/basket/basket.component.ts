@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AlertService } from '../alert/alert.service';
 import { Customer } from '../customer/customer.types';
 import { BasketService } from './basket.service';
 
@@ -14,12 +15,22 @@ export class BasketComponent {
 
   protected basketService = inject(BasketService);
 
+  #alertService = inject(AlertService);
+
   #router = inject(Router);
 
   protected checkout(event: Event): void {
     event.stopPropagation();
     event.preventDefault();
 
-    this.basketService.checkout(this.customer).subscribe(() => this.#router.navigate(['']));
+    this.basketService.checkout(this.customer).subscribe({
+      next: ({ orderNumber }) => {
+        this.#alertService.addSuccess(`Merci pour votre achat. (Réf. ${orderNumber})`);
+        this.#router.navigate(['']);
+      },
+      error: () => {
+        this.#alertService.addDanger("Désolé, une erreur s'est produite.");
+      },
+    });
   }
 }

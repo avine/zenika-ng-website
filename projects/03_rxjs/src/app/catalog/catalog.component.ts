@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { AlertService } from '../alert/alert.service';
 import { WELCOME_MSG } from '../app.token';
 import { BasketService } from '../basket/basket.service';
 import { CatalogService } from './catalog.service';
@@ -17,9 +18,12 @@ export class CatalogComponent {
 
   protected basketService = inject(BasketService);
 
+  #alertService = inject(AlertService);
+
   protected addToBasket(product: Product): void {
-    this.basketService.addItem(product.id).subscribe(() => {
-      this.catalogService.decreaseStock(product.id);
+    this.basketService.addItem(product.id).subscribe({
+      next: () => this.catalogService.decreaseStock(product.id),
+      error: () => this.#alertService.addDanger("Désolé, une erreur s'est produite."),
     });
   }
 }
