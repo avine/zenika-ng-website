@@ -28,11 +28,11 @@ export class BasketComponent {
 
     this.basketService.checkout(this.customer).subscribe({
       next: ({ orderNumber }) => {
-        this.#alertService.addSuccess(`Merci pour votre achat. (Réf. ${orderNumber})`);
+        this.#alertService.addSuccess(`🚀 Merci pour votre commande (réf. ${orderNumber}).`);
         this.#router.navigate(['']);
       },
       error: () => {
-        this.#alertService.addDanger("Désolé, une erreur s'est produite.");
+        this.#alertService.addDanger("😱 Désolé, une erreur s'est produite.");
       },
     });
   }

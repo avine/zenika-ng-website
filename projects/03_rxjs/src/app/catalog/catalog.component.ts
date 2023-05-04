@@ -23,7 +23,7 @@ export class CatalogComponent {
   protected addToBasket(product: Product): void {
     this.basketService.addItem(product.id).subscribe({
       next: () => this.catalogService.decreaseStock(product.id),
-      error: () => this.#alertService.addDanger("Désolé, une erreur s'est produite."),
+      error: () => this.#alertService.addDanger("😱 Désolé, une erreur s'est produite."),
     });
   }
 }

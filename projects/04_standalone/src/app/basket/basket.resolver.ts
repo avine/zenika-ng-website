@@ -11,7 +11,7 @@ export const basketResolver = () => {
     .fetch()
     .pipe(
       catchError(() => {
-        alertService.addDanger("Désolé, impossible d'accéder au panier.");
+        alertService.addDanger("😖 Désolé, impossible d'accéder au panier.");
         return EMPTY;
       })
     );
