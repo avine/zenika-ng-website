@@ -1,46 +1,21 @@
-import { catchError, EMPTY, zip } from 'rxjs';
-
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AlertService } from './alert/alert.service';
 import { BasketComponent } from './basket/basket.component';
-import { BasketService } from './basket/basket.service';
+import { basketResolver } from './basket/basket.resolver';
 import { CatalogComponent } from './catalog/catalog.component';
-import { CatalogService } from './catalog/catalog.service';
+import { catalogResolver } from './catalog/catalog.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: CatalogComponent,
-    resolve: {
-      _: () => {
-        const alertService = inject(AlertService);
-        return zip([inject(CatalogService).fetch(), inject(BasketService).fetch()]).pipe(
-          catchError(() => {
-            alertService.addDanger("Désolé, impossible d'accéder au catalogue.");
-            return EMPTY;
-          })
-        );
-      },
-    },
+    resolve: { _: catalogResolver },
   },
   {
     path: 'basket',
     component: BasketComponent,
-    resolve: {
-      _: () => {
-        const alertService = inject(AlertService);
-        return inject(BasketService)
-          .fetch()
-          .pipe(
-            catchError(() => {
-              alertService.addDanger("Désolé, impossible d'accéder au panier.");
-              return EMPTY;
-            })
-          );
-      },
-    },
+    resolve: { _: basketResolver },
   },
 ];
 

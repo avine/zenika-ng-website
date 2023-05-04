@@ -1,27 +1,21 @@
-import { zip } from 'rxjs';
-
-import { inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BasketComponent } from './basket/basket.component';
-import { BasketService } from './basket/basket.service';
+import { basketResolver } from './basket/basket.resolver';
 import { CatalogComponent } from './catalog/catalog.component';
-import { CatalogService } from './catalog/catalog.service';
+import { catalogResolver } from './catalog/catalog.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: CatalogComponent,
-    resolve: {
-      _: () => zip([inject(CatalogService).fetch(), inject(BasketService).fetch()]),
-    },
+    resolve: { _: catalogResolver },
   },
   {
     path: 'basket',
     component: BasketComponent,
-    resolve: {
-      _: () => inject(BasketService).fetch(),
-    },
+    resolve: { _: basketResolver },
   },
 ];
 
