@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { BasketService } from '../basket.service';
 @Component({
   selector: 'app-basket-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgIf, ReactiveFormsModule],
   templateUrl: './basket-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
