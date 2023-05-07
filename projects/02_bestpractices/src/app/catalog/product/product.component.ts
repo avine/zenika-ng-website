@@ -7,7 +7,7 @@ import { Product } from './product.types';
   templateUrl: './product.component.html',
 })
 export class ProductComponent {
-  @Input() product!: Product;
+  @Input({ required: true }) product!: Product;
 
   @Output() addToBasket = new EventEmitter<Product>();
 

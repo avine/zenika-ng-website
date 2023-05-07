@@ -8,7 +8,7 @@ import { Product } from './product.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
-  @Input() product!: Product;
+  @Input({ required: true }) product!: Product;
 
   @Output() addToBasket = new EventEmitter<Product>();
 
