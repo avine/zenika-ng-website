@@ -36,11 +36,13 @@ export class BasketFormComponent {
 
     this.#basketService.checkout(this.formGroup.value as Customer).subscribe({
       next: ({ orderNumber }) => {
-        this.#alertService.addSuccess(`🚀 Merci pour votre commande (réf. ${orderNumber}).`);
+        this.#alertService.addSuccess(
+          $localize`:@@Response.OrderConfirmed:🚀 Merci pour votre commande (réf. ${orderNumber}:orderNumber:).`
+        );
         this.#router.navigate(['']);
       },
       error: () => {
-        this.#alertService.addDanger("😱 Désolé, une erreur s'est produite.");
+        this.#alertService.addDanger($localize`:@@Response.ErrorOccured:😱 Désolé, une erreur s'est produite.`);
         this.formGroup.enable();
         this.#changeDetectorRef.markForCheck();
       },

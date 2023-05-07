@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { provideHttpClient } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
@@ -12,7 +14,7 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     {
       provide: WELCOME_MSG,
-      useValue: 'Bienvenue sur Zenika Ecommerce',
+      useValue: $localize`:@@Welcome:Bienvenue sur Zenika Ecommerce`,
     },
   ],
 }).catch((err) => console.error(err));

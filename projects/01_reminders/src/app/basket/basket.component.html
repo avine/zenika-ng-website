@@ -1,7 +1,7 @@
 <h2>Mon panier</h2>
 
 <div class="card">
-  <div class="card-header">Articles</div>
+  <div class="card-header">{{ basket.length }} {{ basket.length === 1 ? 'article' : 'articles' }}</div>
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between" *ngFor="let product of basket">

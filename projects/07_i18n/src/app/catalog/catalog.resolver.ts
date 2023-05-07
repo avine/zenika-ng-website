@@ -10,7 +10,9 @@ export const catalogResolver = () => {
   const alertService = inject(AlertService);
   return zip([inject(CatalogService).fetch(), inject(BasketService).fetch()]).pipe(
     catchError(() => {
-      alertService.addDanger("😲 Désolé, impossible d'accéder au catalogue.");
+      alertService.addDanger(
+        $localize`:@@Response.UnableToAccessCatalog:😲 Désolé, impossible d'accéder au catalogue.`
+      );
       return EMPTY;
     })
   );

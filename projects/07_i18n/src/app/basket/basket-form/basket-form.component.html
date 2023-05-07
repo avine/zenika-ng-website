@@ -1,6 +1,6 @@
 <form class="card-body" [formGroup]="formGroup" (ngSubmit)="checkout()">
   <div class="mb-3">
-    <label class="form-label" for="name">Nom</label>
+    <label class="form-label" for="name" i18n="@@FormField.Name">Nom</label>
 
     <input
       type="text"
@@ -11,11 +11,11 @@
       [formControl]="formGroup.controls.name"
     />
 
-    <div class="invalid-feedback">Champ obligatoire</div>
+    <div class="invalid-feedback" i18n="@@FormError.Required">Champ obligatoire</div>
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="address">Adresse</label>
+    <label class="form-label" for="address" i18n="@@FormField.Address">Adresse</label>
 
     <textarea
       id="address"
@@ -25,11 +25,11 @@
       [formControl]="formGroup.controls.address"
     ></textarea>
 
-    <div class="invalid-feedback">Champ obligatoire</div>
+    <div class="invalid-feedback" i18n="@@FormError.Required">Champ obligatoire</div>
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="creditCard">Numéro de carte de crédit</label>
+    <label class="form-label" for="creditCard" i18n="@@FormField.CreditCard">Numéro de carte de crédit</label>
 
     <input
       id="creditCard"
@@ -40,10 +40,19 @@
     />
 
     <div class="invalid-feedback" *ngIf="formGroup.controls.creditCard.errors as errors">
-      <ng-container *ngIf="errors?.['required']">Champ obligatoire</ng-container>
-      <ng-container *ngIf="errors?.['pattern']">Le numéro doit être valide (ex. 123-456)</ng-container>
+      <ng-container *ngIf="errors?.['required']" i18n="@@FormError.Required">Champ obligatoire</ng-container>
+      <ng-container *ngIf="errors?.['pattern']" i18n="@@FormError.CreditCard">
+        Le numéro doit être valide (ex. 123-456)
+      </ng-container>
     </div>
   </div>
 
-  <button [disabled]="formGroup.invalid || formGroup.disabled" type="submit" class="btn btn-success">Valider</button>
+  <button
+    [disabled]="formGroup.invalid || formGroup.disabled"
+    type="submit"
+    class="btn btn-success"
+    i18n="@@Action.Validate"
+  >
+    Valider
+  </button>
 </form>

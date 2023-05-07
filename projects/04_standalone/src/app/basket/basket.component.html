@@ -1,7 +1,9 @@
 <h2>Mon panier</h2>
 
 <div class="card" *ngIf="basketService.basket$ | async as basket">
-  <div class="card-header">Articles</div>
+  <div class="card-header" *ngIf="basketService.numberOfItems$ | async as numberOfItems">
+    {{ numberOfItems }} {{ numberOfItems === 1 ? 'article' : 'articles' }}
+  </div>
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between" *ngFor="let product of basket">

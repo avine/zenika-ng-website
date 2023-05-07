@@ -12,7 +12,7 @@ export const basketGuard = () => {
     .pipe(
       map(({ length }) => length > 0),
       catchError(() => {
-        alertService.addDanger("😖 Désolé, impossible d'accéder au panier.");
+        alertService.addDanger($localize`:@@Response.UnableToAccessBasket:😖 Désolé, impossible d'accéder au panier.`);
         return EMPTY;
       })
     );

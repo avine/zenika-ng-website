@@ -23,7 +23,9 @@
     "test:04": "ng test --project 04_standalone",
     "test:05": "ng test --project 05_router",
     "test:06": "ng test --project 06_reactiveform",
-    "test:07": "ng test --project 07_i18n"
+    "test:07": "ng test --project 07_i18n",
+    "build:07": "ng build --project 07_i18n",
+    "i18n:07": "ng extract-i18n --project 07_i18n --format json --output-path projects/07_i18n/src/locales --out-file messages.fr.json"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +51,7 @@
     "@angular-eslint/template-parser": "15.2.1",
     "@angular/cli": "~15.2.7",
     "@angular/compiler-cli": "^15.2.0",
+    "@angular/localize": "^15.2.8",
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",

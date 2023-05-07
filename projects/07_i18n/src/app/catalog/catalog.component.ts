@@ -1,4 +1,4 @@
-import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Product } from './product/product.types';
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [AsyncPipe, CurrencyPipe, NgFor, NgIf, RouterLink, ProductComponent],
+  imports: [AsyncPipe, CurrencyPipe, DatePipe, NgFor, NgIf, RouterLink, ProductComponent],
   templateUrl: './catalog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -25,10 +25,13 @@ export class CatalogComponent {
 
   #alertService = inject(AlertService);
 
+  now = Date.now();
+
   protected addToBasket(product: Product): void {
     this.basketService.addItem(product.id).subscribe({
       next: () => this.catalogService.decreaseStock(product.id),
-      error: () => this.#alertService.addDanger("😱 Désolé, une erreur s'est produite."),
+      error: () =>
+        this.#alertService.addDanger($localize`:@@Response.ErrorOccured:😱 Désolé, une erreur s'est produite.`),
     });
   }
 }

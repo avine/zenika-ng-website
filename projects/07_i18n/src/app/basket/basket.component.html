@@ -1,7 +1,10 @@
 <h2>Mon panier</h2>
 
 <div class="card" *ngIf="basketService.basket$ | async as basket">
-  <div class="card-header">Articles</div>
+  <div class="card-header" *ngIf="basketService.numberOfItems$ | async as numberOfItems">
+    {{ numberOfItems }}
+    <ng-container i18n="@@Basket.Items">{numberOfItems, plural, =1 {article} other {articles}}</ng-container>
+  </div>
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between" *ngFor="let product of basket">
@@ -13,13 +16,13 @@
     </li>
 
     <ng-template #basketEmpty>
-      <li class="list-group-item text-secondary">Votre panier est vide</li>
+      <li class="list-group-item text-secondary" i18n="@@Basket.Empty">Votre panier est vide</li>
     </ng-template>
   </ul>
 </div>
 
 <div class="card mt-3">
-  <div class="card-header">Paiement</div>
+  <div class="card-header" i18n="@@Basket.Payment">Paiement</div>
 
   <app-basket-form />
 </div>

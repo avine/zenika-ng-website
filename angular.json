@@ -546,11 +546,20 @@
       },
       "root": "projects/07_i18n",
       "sourceRoot": "projects/07_i18n/src",
+      "i18n": {
+        "sourceLocale": "fr",
+        "locales": {
+          "en-US": {
+            "translation": "projects/07_i18n/src/locales/messages.en-US.json"
+          }
+        }
+      },
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
             "outputPath": "dist/07_i18n",
             "index": "projects/07_i18n/src/index.html",
             "main": "projects/07_i18n/src/main.ts",
@@ -578,6 +587,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "localize": ["en-US"],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
