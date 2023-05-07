@@ -656,7 +656,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/08_universal",
+            "outputPath": "dist/08_universal/browser",
             "index": "projects/08_universal/src/index.html",
             "main": "projects/08_universal/src/main.ts",
             "polyfills": ["zone.js"],
@@ -727,6 +727,59 @@
           "options": {
             "lintFilePatterns": ["projects/08_universal/**/*.ts", "projects/08_universal/**/*.html"]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/08_universal/server",
+            "main": "projects/08_universal/server.ts",
+            "tsConfig": "projects/08_universal/tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "08_universal:build:development",
+              "serverTarget": "08_universal:server:development"
+            },
+            "production": {
+              "browserTarget": "08_universal:build:production",
+              "serverTarget": "08_universal:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "08_universal:build:production",
+              "serverTarget": "08_universal:server:production"
+            },
+            "development": {
+              "browserTarget": "08_universal:build:development",
+              "serverTarget": "08_universal:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

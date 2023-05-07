@@ -27,7 +27,11 @@
     "test:07": "ng test --project 07_i18n",
     "test:08": "ng test --project 08_universal",
     "build:07": "ng build --project 07_i18n",
-    "i18n:07": "ng extract-i18n --project 07_i18n --format json --output-path projects/07_i18n/src/locales --out-file messages.fr.json"
+    "i18n:07": "ng extract-i18n --project 07_i18n --format json --output-path projects/07_i18n/src/locales --out-file messages.fr.json",
+    "dev:ssr:08": "ng run 08_universal:serve-ssr",
+    "build:ssr:08": "ng build --project 08_universal && ng run 08_universal:server",
+    "serve:ssr:08": "node dist/08_universal/server/main.js",
+    "prerender:08": "ng run 08_universal:prerender"
   },
   "private": true,
   "dependencies": {
@@ -38,8 +42,11 @@
     "@angular/forms": "^16.0.0",
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
+    "@angular/platform-server": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@nguniversal/express-engine": "^16.0.0",
     "bootstrap": "^5.2.3",
+    "express": "^4.15.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -54,7 +61,10 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "^16.0.0",
     "@angular/localize": "^16.0.0",
+    "@nguniversal/builders": "^16.0.0",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~4.3.0",
+    "@types/node": "^14.15.0",
     "@typescript-eslint/eslint-plugin": "5.59.2",
     "@typescript-eslint/parser": "5.59.2",
     "eslint": "^8.39.0",
