@@ -1,0 +1,15 @@
+<div class="card h-100 text-center" [class.text-bg-danger]="isTheLast()">
+  <img class="card-img-top" [src]="product.photo" alt="Product image" />
+
+  <div class="card-header">
+    <small>{{ product.description }}</small>
+  </div>
+
+  <div class="card-body">
+    <h3 class="h6 card-title">{{ product.title | uppercase }}</h3>
+
+    <p class="card-text">{{ product.price | currency : 'EUR' }}</p>
+
+    <button class="btn btn-primary" (click)="onClick()">Ajoutez au panier</button>
+  </div>
+</div>
