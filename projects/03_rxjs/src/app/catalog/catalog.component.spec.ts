@@ -28,7 +28,7 @@ describe('CatalogComponent', () => {
         },
         {
           provide: WELCOME_MSG,
-          useValue: 'Welcome on unit test',
+          useValue: 'Welcome to unit testing',
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

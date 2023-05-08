@@ -3,17 +3,9 @@ import { ApplicationConfig } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
+import { provideWelcomeMsg } from './app.provider';
 import { appRoutes } from './app.routes';
-import { WELCOME_MSG } from './app.token';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideClientHydration(),
-    provideRouter(appRoutes),
-    provideHttpClient(),
-    {
-      provide: WELCOME_MSG,
-      useValue: 'Bienvenue sur Zenika Ecommerce',
-    },
-  ],
+  providers: [provideClientHydration(), provideRouter(appRoutes), provideHttpClient(), provideWelcomeMsg()],
 };

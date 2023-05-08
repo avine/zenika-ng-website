@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { AlertService } from '../alert/alert.service';
-import { WELCOME_MSG } from '../app.token';
+import { WELCOME_MSG } from '../app.provider';
 import { BasketService } from '../basket/basket.service';
 import { CatalogService } from './catalog.service';
 import { ProductComponent } from './product/product.component';

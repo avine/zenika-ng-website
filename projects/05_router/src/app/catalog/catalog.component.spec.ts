@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { WELCOME_MSG } from '../app.token';
+import { WELCOME_MSG } from '../app.provider';
 import { BasketService } from '../basket/basket.service';
 import { BasketServiceMock } from '../basket/basket.service.mock';
 import { CatalogComponent } from './catalog.component';
@@ -27,7 +27,7 @@ describe('CatalogComponent', () => {
         },
         {
           provide: WELCOME_MSG,
-          useValue: 'Welcome on unit test',
+          useValue: 'Welcome to unit testing',
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
