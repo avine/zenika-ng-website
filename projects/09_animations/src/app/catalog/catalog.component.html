@@ -9,9 +9,10 @@
 <h2 class="h4">Catalogue</h2>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-  <ng-container *ngFor="let product of catalogService.products$ | async">
+  <ng-container *ngFor="let product of catalogService.products$ | async; trackBy: trackById">
     <app-product
-      class="col"
+      @disappear
+      class="col overflow-hidden"
       *ngIf="catalogService.isAvailable(product)"
       [product]="product"
       (addToBasket)="addToBasket($event)"

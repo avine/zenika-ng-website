@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { AlertService } from '../alert/alert.service';
 import { WELCOME_MSG } from '../app.provider';
 import { BasketService } from '../basket/basket.service';
+import { catalogAnimations } from './catalog.animation';
 import { CatalogService } from './catalog.service';
 import { ProductComponent } from './product/product.component';
 import { Product } from './product/product.types';
@@ -14,6 +15,7 @@ import { Product } from './product/product.types';
   standalone: true,
   imports: [AsyncPipe, CurrencyPipe, NgFor, NgIf, RouterLink, ProductComponent],
   templateUrl: './catalog.component.html',
+  animations: [catalogAnimations],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogComponent {
@@ -30,5 +32,10 @@ export class CatalogComponent {
       next: () => this.catalogService.decreaseStock(product.id),
       error: () => this.#alertService.addDanger("😱 Désolé, une erreur s'est produite."),
     });
+  }
+
+  // Note: the animation will not work properly without the `ngForTrackBy` directive
+  protected trackById(_: number, { id }: Product) {
+    return id;
   }
 }

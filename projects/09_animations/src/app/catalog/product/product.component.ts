@@ -8,6 +8,7 @@ import { Product } from './product.types';
   standalone: true,
   imports: [CurrencyPipe, UpperCasePipe],
   templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
