@@ -942,7 +942,7 @@
             "tsConfig": "projects/10_material/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/10_material/src/favicon.ico", "projects/10_material/src/assets"],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "projects/10_material/src/styles.scss"],
+            "styles": ["projects/10_material/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -997,7 +997,7 @@
             "tsConfig": "projects/10_material/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/10_material/src/favicon.ico", "projects/10_material/src/assets"],
-            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "projects/10_material/src/styles.scss"],
+            "styles": ["projects/10_material/src/styles.scss"],
             "scripts": []
           }
         },

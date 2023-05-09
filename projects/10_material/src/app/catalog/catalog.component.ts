@@ -1,5 +1,6 @@
 import { AsyncPipe, CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 import { AlertService } from '../alert/alert.service';
@@ -12,7 +13,7 @@ import { Product } from './product/product.types';
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [AsyncPipe, CurrencyPipe, NgFor, NgIf, RouterLink, ProductComponent],
+  imports: [AsyncPipe, CurrencyPipe, NgFor, NgIf, RouterLink, MatButtonModule, ProductComponent],
   templateUrl: './catalog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
